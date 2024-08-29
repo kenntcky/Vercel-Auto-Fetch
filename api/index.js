@@ -1,18 +1,18 @@
-import { get } from 'axios';
-import { initializeApp, credential as _credential, database } from 'firebase-admin';
+const axios = require('axios');
+const admin = require('firebase-admin');
 const BMKG_API_URL = 'https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json';
-import serviceAccount from "belajar-firebase-777-firebase-adminsdk-r9s8a-dd714e8a5a.json";
+const serviceAccount = require("belajar-firebase-777-firebase-adminsdk-r9s8a-dd714e8a5a.json");
 
-initializeApp({
-  credential: _credential.cert(serviceAccount),
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://belajar-firebase-777-default-rtdb.asia-southeast1.firebasedatabase.app"
 });
 
-const db = database();
+const db = admin.database();
 
 async function fetchAndStoreData() {
   try {
-    const response = await get(BMKG_API_URL);
+    const response = await axios.get(BMKG_API_URL);
     if (response.status === 200) {
       const latestData = response.data;
 
@@ -49,7 +49,7 @@ async function fetchAndStoreData() {
   }
 }
 
-export default async (req, res) => {
+module.exports = async (req, res) => {
   await fetchAndStoreData();
   res.status(200).send('Data fetched and stored');
 };
