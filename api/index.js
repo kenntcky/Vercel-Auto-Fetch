@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from axios
 const admin = require('firebase-admin');
 const BMKG_API_URL = 'https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json';
 const serviceAccount = require("/path/to/your/serviceAccount.json");
