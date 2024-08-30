@@ -1,7 +1,7 @@
-import axios from axios
+const axios = require('axios')
 const admin = require('firebase-admin');
 const BMKG_API_URL = 'https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json';
-const serviceAccount = require("/path/to/your/serviceAccount.json");
+const serviceAccount = require("belajar-firebase-777-firebase-adminsdk-r9s8a-dd714e8a5a.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
