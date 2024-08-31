@@ -1,7 +1,7 @@
 const axios = require('axios')
 const admin = require('firebase-admin');
 const BMKG_API_URL = 'https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json';
-const serviceAccount = require("belajar-firebase-777-firebase-adminsdk-r9s8a-dd714e8a5a.json");
+const serviceAccount = require("../belajar-firebase-777-firebase-adminsdk-r9s8a-dd714e8a5a.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -48,7 +48,13 @@ async function fetchAndStoreData() {
   }
 }
 
+// setInterval(fetchAndStoreData, 30000);
+
 module.exports = async (req, res) => {
-  await fetchAndStoreData();
-  res.status(200).send('Data fetched and stored');
+  setInterval(fetchAndStoreData, 30000);
+
+  // while (true) {
+  //   await fetchAndStoreData();
+  //   setTimeout(30000);
+  // }
 };
