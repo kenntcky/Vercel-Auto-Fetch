@@ -51,8 +51,8 @@ async function fetchAndStoreData() {
 // setInterval(fetchAndStoreData, 30000);
 
 module.exports = async (req, res) => {
-  setInterval(fetchAndStoreData, 30000);
-
+  await fetchAndStoreData();
+  
   // while (true) {
   //   await fetchAndStoreData();
   //   setTimeout(30000);
