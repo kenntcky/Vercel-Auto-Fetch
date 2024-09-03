@@ -49,5 +49,6 @@ async function fetchAndStoreData() {
 }
 
 module.exports = async (req, res) => {
+  console.log("sigma");
   fetchAndStoreData();
 };
