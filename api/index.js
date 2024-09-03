@@ -49,5 +49,5 @@ async function fetchAndStoreData() {
 }
 
 module.exports = async (req, res) => {
-  await fetchAndStoreData();
+  fetchAndStoreData();
 };
