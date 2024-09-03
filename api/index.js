@@ -17,7 +17,7 @@ async function fetchAndStoreData() {
       const latestData = response.data;
       const dateTime = latestData['Infogempa']['gempa']['DateTime'];
       const shakemapFile = latestData['Infogempa']['gempa']['Shakemap'];
-      const shakemapUrl = `https://data.bmkg.go.id/DataMKG/TEWS/${shakemapFile}`;
+      const shakemapUrl = "https://data.bmkg.go.id/DataMKG/TEWS/${shakemapFile}";
       latestData['Infogempa']['gempa']['shakemapUrl'] = shakemapUrl;
 
       const refDate = db.ref(dateTime);
@@ -49,5 +49,5 @@ async function fetchAndStoreData() {
 }
 
 module.exports = async (req, res) => {
-  res.status(200).send(await fetchAndStoreData());
+  await fetchAndStoreData();
 };
