@@ -33,8 +33,10 @@ async function fetchAndStoreData() {
         if (latestKey !== dateTime) {
           await ref.child(dateTime).set(latestData);
           console.log('New earthquake data has been saved in Firebase Realtime Database!');
+          return 'New earthquake data has been saved in Firebase Realtime Database!';
         } else {
           console.log('No new earthquake data.');
+          return 'No new earthquake data.';
         }
       } else {
         await ref.child(dateTime).set(latestData);
@@ -53,6 +55,25 @@ async function fetchAndStoreData() {
 
 module.exports = async (req, res) => {
   console.log("Fetching earthquake data...");
-  const result = await fetchAndStoreData();
-  res.status(200).send(result);
+
+  await fetchAndStoreData();
+
+  let fetchCount = 0;
+  const fetchInterval = 2500;  // 5 detik interval setiap fetch
+  const executionTime = 20000;  // Total waktu eksekusi 20 seconds
+
+  const intervalId = setInterval(async () => {
+    fetchCount++;
+    console.log(`Fetch attempt ${fetchCount}`);
+
+    await fetchAndStoreData();
+
+  }, fetchInterval);
+
+  // Stop interval jika sudah mencapai 20 detik (failsafe jika ada error).
+  setTimeout(() => {
+    clearInterval(intervalId);
+    console.log("20 detik sudah berlalu.");
+    res.status(200).send();
+  }, executionTime);
 };
