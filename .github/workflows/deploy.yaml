@@ -22,7 +22,7 @@ jobs:
       run: npm install  # or yarn install if using Yarn
 
     - name: Decode Firebase Admin SDK and set credentials
-      run: echo ${{ secrets.FIREBASE_ADMIN_SDK }} | base64 -d > firebase-adminsdk.json
+      run: echo ${{ secrets.FIREBASE_ADMIN_SDK }} | base64 --decode > firebase-adminsdk.json
 
     - name: Run your script
       run: node api/index.js
