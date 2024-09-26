@@ -1,7 +1,7 @@
 const axios = require('axios');
 const admin = require('firebase-admin');
 const BMKG_API_URL = 'https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json';
-const serviceAccount = require("../belajar-firebase-777-firebase-adminsdk-r9s8a-dd714e8a5a.json");
+const serviceAccount = require("../firebase-adminsdk.json");
 
 console.log("run");
 
