@@ -1,8 +1,8 @@
 name: Auto-fetch & Run Project
 
 on:
-  schedule:
-    - cron: '* * * * *'
+  repository_dispatch:
+    types: [trigger-action]
   push:
     branches:
       - master
