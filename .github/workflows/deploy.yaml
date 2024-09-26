@@ -26,3 +26,7 @@ jobs:
 
     - name: Run your script
       run: node api/index.js
+
+    - name: Create Cron Job (Optional)
+      run: |
+        echo "* * * * * /usr/bin/node /path-to-your-project/your-script.js" | crontab -
