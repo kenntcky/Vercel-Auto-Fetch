@@ -62,7 +62,7 @@ async function main() {
 
   let fetchCount = 0;
   const fetchInterval = 2500;  // 5 detik interval setiap fetch
-  const executionTime = 20000;  // Total waktu eksekusi 5 jam 55 menit
+  const executionTime = 21300000;  // Total waktu eksekusi 5 jam 55 menit
 
   const intervalId = setInterval(async () => {
     fetchCount++;
