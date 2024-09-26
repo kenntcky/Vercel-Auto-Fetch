@@ -76,6 +76,7 @@ async function main() {
   setTimeout(() => {
     clearInterval(intervalId);
     console.log("20 detik sudah berlalu.");
+    process.exit(0);
   }, executionTime);
 };
 
