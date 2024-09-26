@@ -1,7 +1,7 @@
 const axios = require('axios');
 const admin = require('firebase-admin');
 const BMKG_API_URL = 'https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json';
-const serviceAccount = require("../firebase-adminsdk.json");
+const serviceAccount = require("firebase-adminsdk.json");
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
