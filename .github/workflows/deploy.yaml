@@ -1,0 +1,25 @@
+name: Auto-fetch & Run Project
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # Use the version your project requires
+
+    - name: Install dependencies
+      run: npm install  # or yarn install if using Yarn
+
+    - name: Run your script
+      run: node api/index.js
