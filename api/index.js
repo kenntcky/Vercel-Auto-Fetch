@@ -3,6 +3,8 @@ const admin = require('firebase-admin');
 const BMKG_API_URL = 'https://data.bmkg.go.id/DataMKG/TEWS/autogempa.json';
 const serviceAccount = require("../belajar-firebase-777-firebase-adminsdk-r9s8a-dd714e8a5a.json");
 
+console.log("run");
+
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://belajar-firebase-777-default-rtdb.asia-southeast1.firebasedatabase.app"
@@ -53,7 +55,7 @@ async function fetchAndStoreData() {
   }
 }
 
-module.exports = async (req, res) => {
+async function main() {
   console.log("Fetching earthquake data...");
 
   await fetchAndStoreData();
@@ -74,6 +76,7 @@ module.exports = async (req, res) => {
   setTimeout(() => {
     clearInterval(intervalId);
     console.log("20 detik sudah berlalu.");
-    res.status(200).send();
   }, executionTime);
 };
+
+main();
