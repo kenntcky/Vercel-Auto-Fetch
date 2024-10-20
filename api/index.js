@@ -69,7 +69,7 @@ async function sendEarthquakeNotification(gempaInfo) {
   const message = {
     notification: {
       title: `Gempa ber-magnitudo ${gempaInfo['Magnitude']}`,
-      body: `${gempaInfo['Wilayah']} Klik untuk melihat lebih detail`
+      body: `${gempaInfo['Wilayah']}. Klik untuk melihat lebih detail`
     },
         "android": {
             "notification": {
