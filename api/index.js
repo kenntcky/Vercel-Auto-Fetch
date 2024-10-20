@@ -71,6 +71,20 @@ async function sendEarthquakeNotification(gempaInfo) {
       title: `Gempa ber-magnitudo ${gempaInfo['Magnitude']}`,
       body: `${gempaInfo['Wilayah']} Klik untuk melihat lebih detail`,
     },
+    android: {
+      notification: {
+          channelId: 'high_importance_channel', // Make sure this matches the channel ID in your Flutter app
+          vibration: [0, 500, 1000, 500, 1000], // Vibration pattern (optional)
+      },
+  },
+  apns: { // iOS-specific settings
+      payload: {
+          aps: {
+              sound: 'default', // You can also specify a custom sound file here
+              // Add more properties here if needed
+          },
+      },
+  },
     topic: 'earthquake-updates',  // Send to a specific topic or replace with specific tokens if needed
   };
 
