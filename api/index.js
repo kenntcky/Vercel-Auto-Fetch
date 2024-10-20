@@ -82,7 +82,7 @@ async function sendEarthquakeNotification(gempaInfo) {
                     "sound": "default"
                 }
             }
-        }
+        },
     topic: 'earthquake-updates',  // Send to a specific topic or replace with specific tokens if needed
   };
 
