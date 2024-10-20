@@ -70,7 +70,7 @@ async function sendEarthquakeNotification(gempaInfo) {
     notification: {
       title: `Gempa ber-magnitudo ${gempaInfo['Magnitude']}`,
       body: `${gempaInfo['Wilayah']} Klik untuk melihat lebih detail`,
-      sound: 'default'
+      sound: "default"
     },
     topic: 'earthquake-updates',  // Send to a specific topic or replace with specific tokens if needed
   };
