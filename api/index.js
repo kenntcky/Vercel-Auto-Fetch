@@ -11,6 +11,7 @@ admin.initializeApp({
 });
 
 const db = admin.database();
+const fcm = admin.messaging();  // Firebase Cloud Messaging instance
 
 async function fetchAndStoreData() {
   try {
@@ -35,6 +36,10 @@ async function fetchAndStoreData() {
         if (latestKey !== dateTime) {
           await ref.child(dateTime).set(latestData);
           console.log('New earthquake data has been saved in Firebase Realtime Database!');
+
+          // Call FCM notification function here
+          await sendEarthquakeNotification(gempaInfo);  // Send notification
+          
           return 'New earthquake data has been saved in Firebase Realtime Database!';
         } else {
           console.log('No new earthquake data.');
@@ -43,6 +48,10 @@ async function fetchAndStoreData() {
       } else {
         await ref.child(dateTime).set(latestData);
         console.log('Initial earthquake data has been saved in Firebase Realtime Database!');
+        
+        // Call FCM notification function here
+        await sendEarthquakeNotification(gempaInfo);  // Send notification
+        
         return 'Initial earthquake data has been saved in Firebase Realtime Database!';
       }
     } else {
@@ -52,6 +61,24 @@ async function fetchAndStoreData() {
   } catch (error) {
     console.error('Error fetching data:', error);
     return `Error fetching data: ${error.message}`;
+  }
+}
+
+// Function to send FCM notification
+async function sendEarthquakeNotification(gempaInfo) {
+  const message = {
+    notification: {
+      title: `Gempa ber-magnitudo ${gempaInfo['Magnitude']}`,
+      body: `${gempaInfo['Wilayah']} Klik untuk melihat lebih detail`,
+    },
+    topic: 'earthquake-updates',  // Send to a specific topic or replace with specific tokens if needed
+  };
+
+  try {
+    const response = await fcm.send(message);
+    console.log('FCM Notification sent successfully:', response);
+  } catch (error) {
+    console.error('Error sending FCM notification:', error);
   }
 }
 
