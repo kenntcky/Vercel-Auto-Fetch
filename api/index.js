@@ -72,9 +72,20 @@ async function sendEarthquakeNotification(gempaInfo) {
   const message = {
     notification: {
       title: `Gempa ber-magnitudo ${gempaInfo['Magnitude']}`,
-      body: `${gempaInfo['Wilayah']} Klik untuk melihat lebih detail`,
-      sound: "default"
+      body: `${gempaInfo['Wilayah']}. Klik untuk melihat lebih detail`
     },
+        "android": {
+            "notification": {
+                "sound": "default"
+            }
+        },
+        "apns": {
+            "payload": {
+                "aps": {
+                    "sound": "default"
+                }
+            }
+        },
     topic: 'earthquake-updates',  // Send to a specific topic or replace with specific tokens if needed
   };
 
