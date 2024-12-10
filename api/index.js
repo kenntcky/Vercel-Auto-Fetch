@@ -66,6 +66,9 @@ async function fetchAndStoreData() {
 
 // Function to send FCM notification
 async function sendEarthquakeNotification(gempaInfo) {
+
+  gempaInfo['notificationTime'] = new Date().toISOString();
+
   const message = {
     notification: {
       title: `Gempa ber-magnitudo ${gempaInfo['Magnitude']}`,
@@ -77,6 +80,10 @@ async function sendEarthquakeNotification(gempaInfo) {
 
   try {
     const response = await fcm.send(message);
+    const ref = db.ref();
+    await ref.child(gempaInfo['DateTime']).child('Infogempa').child('gempa').update({
+      notificationTime: gempaInfo['notificationTime']
+    });
     console.log('FCM Notification sent successfully:', response);
   } catch (error) {
     console.error('Error sending FCM notification:', error);
